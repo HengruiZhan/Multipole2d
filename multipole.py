@@ -296,10 +296,10 @@ class Multipole2d():
             # in case where the mass is symetric, the multipole of odd l vanish
             self.calcSolHarm(l)
             self.calcML()
-            MulFace_minus_r = self.calcMulFace(-dr/2, 0)
-            MulFace_minus_z = self.calcMulFace(0, -dz/2)
-            MulFace_plus_r = self.calcMulFace(dr/2, 0)
-            MulFace_plus_z = self.calcMulFace(0, dz/2)
+            MulFace_minus_r = self.calcMulFace(-dr/2, 0, l)
+            MulFace_minus_z = self.calcMulFace(0, -dz/2, l)
+            MulFace_plus_r = self.calcMulFace(dr/2, 0, l)
+            MulFace_plus_z = self.calcMulFace(0, dz/2, l)
             phi += (MulFace_minus_r*area_m_r +
                     MulFace_minus_z*area_m_z +
                     MulFace_plus_r*area_p_r +
