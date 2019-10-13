@@ -267,6 +267,7 @@ class Multipole2d():
         # conj(M_lm^I^tilde)*R_lm at the surface
         # evaluated at the face of the cell
 
+        # rho and z coordinates of all surfaces of grid cell
         rFace = self.r2d + dr
         zFace = self.z2d + dz
 
@@ -282,8 +283,9 @@ class Multipole2d():
                 mtilde_r, mtilde_i = self.sample_mtilde(radius[i, j])
 
                 P_l = calcLegPolyL(l, cosTheta[i, j])
-                R_l = radius**l * P_l
-                I_l = radius**(-l-1) * P_l
+
+                R_l = radius[i, j]**l * P_l
+                I_l = radius[i, j]**(-l-1) * P_l
 
                 mulFace_l[i, j] = mtilde_r * I_l + mtilde_i * R_l
 
