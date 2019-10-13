@@ -150,7 +150,12 @@ class Multipole():
         return -np.real(phi_zone)
 
     
-    @jit
+from numba import jit
+import numpy as np
+import scipy.constants as sc
+
+
+@jit
 def calcLegPolyL(l, x):
     # Calculate the Legendre polynomials. We use a stable recurrence relation:
     # (l+1) P_{l+1}(x) = (2l+1) x P_l(x) - l P_{l-1}(x).
@@ -158,17 +163,18 @@ def calcLegPolyL(l, x):
     # P_0(x) = 1
     # P_1(x) = x
     if (l == 0):
-        legPolyL = 1.0
+        return 1.0
     elif(l == 1):
-        legPolyL = x
+        return x
     else:
         legPolyL2 = 1.0
         legPolyL1 = x
+        legPolyL = 0.0
         for n in range(2, l+1):
             legPolyL = ((2*n - 1) * x * legPolyL1 - (n-1) * legPolyL2) / n
             legPolyL2 = legPolyL1
             legPolyL1 = legPolyL
-    return legPolyL
+        return legPolyL
 
 
 class Multipole2d():
@@ -215,6 +221,7 @@ class Multipole2d():
         for i in range(self.g.nr):
             for j in range(self.g.nz):
                 P_l[i, j] = calcLegPolyL(l, self.cosTheta[i, j])
+
         self.R_l = self.radius**l*P_l
         self.I_l = self.radius**(-l-1)*P_l
 
@@ -268,15 +275,19 @@ class Multipole2d():
 
         cosTheta = zFace/radius
 
-        mtilde_r, mtilde_i = self.sample_mtilde(radius)
+        mulFace_l = self.g.scratch_array()
 
-        P_l = calcLegPolyL(l, cosTheta)
-        R_l = radius**l * P_l
-        I_l = radius**(-l-1) * P_l
+        for i in range(self.g.nr):
+            for j in range(self.g.nz):
+                mtilde_r, mtilde_i = self.sample_mtilde(radius[i, j])
 
-        phiFace_l = mtilde_r * I_l + mtilde_i * R_l
+                P_l = calcLegPolyL(l, cosTheta[i, j])
+                R_l = radius**l * P_l
+                I_l = radius**(-l-1) * P_l
 
-        return phiFace_l
+                mulFace_l[i, j] = mtilde_r * I_l + mtilde_i * R_l
+
+        return mulFace_l
 
     @ jit
     def Phi(self):
