@@ -281,8 +281,8 @@ class Multipole2d():
     @ jit
     def Phi(self):
 
-        dr = self.g.dr
-        dz = self.g.dz
+        dr = self.g.dr/2
+        dz = self.g.dz/2
         area_m_r = 2*np.pi*(self.g.r2d-dr)*dz
         area_m_z = np.pi*((self.g.r2d+dr)**2 - (self.g.r2d-dr)**2)
         area_p_r = 2*np.pi*(self.g.r2d+dr)*dz
@@ -296,10 +296,10 @@ class Multipole2d():
             # in case where the mass is symetric, the multipole of odd l vanish
             self.calcSolHarm(l)
             self.calcML()
-            MulFace_minus_r = self.calcMulFace(-dr/2, 0, l)
-            MulFace_minus_z = self.calcMulFace(0, -dz/2, l)
-            MulFace_plus_r = self.calcMulFace(dr/2, 0, l)
-            MulFace_plus_z = self.calcMulFace(0, dz/2, l)
+            MulFace_minus_r = self.calcMulFace(-dr, 0, l)
+            MulFace_minus_z = self.calcMulFace(0, -dz, l)
+            MulFace_plus_r = self.calcMulFace(dr, 0, l)
+            MulFace_plus_z = self.calcMulFace(0, dz, l)
             phi += (MulFace_minus_r*area_m_r +
                     MulFace_minus_z*area_m_z +
                     MulFace_plus_r*area_p_r +
