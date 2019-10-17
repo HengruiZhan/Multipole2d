@@ -202,7 +202,7 @@ class Multipole2d():
         z_max = max(abs(self.g.zlim[0] - center[1]), abs(self.g.zlim[1] -
                                                          center[1]))
 
-        # find the r_bins
+        # radii of concentric spheres
         dmax = np.sqrt(r_max**2 + z_max**2)
 
         self.n_bins = int(dmax/dr)
@@ -268,8 +268,8 @@ class Multipole2d():
         # evaluated at the face of the cell
 
         # rho and z coordinates of all surfaces of grid cell
-        rFace = self.r2d + dr
-        zFace = self.z2d + dz
+        rFace = self.g.r2d + dr
+        zFace = self.g.z2d + dz
 
         radius = np.sqrt((rFace - self.center[0])**2 +
                          (zFace - self.center[1])**2)
