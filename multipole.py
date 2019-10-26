@@ -4,6 +4,7 @@ from scipy.special import sph_harm
 
 
 """
+# version 1
 class Multipole():
     '''The Multipole is written in vetorized codes'''
 
@@ -152,6 +153,8 @@ class Multipole():
     """
 
 
+"""
+# version 2
 @jit
 def calcLegPolyL(l, x):
     # Calculate the Legendre polynomials. We use a stable recurrence relation:
@@ -173,60 +176,6 @@ def calcLegPolyL(l, x):
             legPolyL1 = legPolyL
         return legPolyL
 
-# bug
-
-
-@jit
-def calcR_l(l, z, r):
-    # Calculate the solid harmonic function R_l^c for 2d axisymmetric condition
-    # We use the recurrence relation defined in Flash user guide
-    # R_l^c = ((2*l-1)*z*R_{l-1}^c-r**2*R_{l-2}^c)/l**2
-    # This recurrence reltaion use the initial conditions:
-    # R_0^c = 1
-    # R_1^c = z
-    if (l == 0):
-        return 1.0
-    elif (l == 1):
-        return z
-    else:
-        R_l2 = 1.0
-        R_l1 = z
-        for n in range(2, l+1):
-            # R_l = ((2*n-1)*z*R_l1-r**2*R_l2)/n**2
-
-            # here use another recurrence relation:
-            # R_l=((2l-1)*z*R_{l-1}-(l-1)*r^2*R_{l-2})/n
-            R_l = ((2*n-1)*z*R_l1-(n-1)*r**2*R_l2)/n
-        return R_l
-
-# bug
-
-
-@jit
-def calcI_l(l, z, r):
-    # Calculate the solid harmonic function I_l^c for 2d axisymmetric condition
-    # We use the recurrence relation defined in Flash user guide
-    # I_l^c = ((2*l-1)*z*I_{l-1}^c-(l-1)**2*R_{l-2}^c)/r**2
-    # This recurrence reltaion use the initial conditions:
-    # I_0^c = 1/r
-    # I_1^c = z/r**3
-    if (l == 0):
-        return 1/r
-    elif(l == 1):
-        return z/r**3
-    else:
-        I_l2 = 1.0
-        I_l1 = z/r**3
-        for n in range(2, l+1):
-            # I_l = ((2*n-1)*z*I_l1-(n-1)**2*I_l2)/r**2
-
-            # here use another recurrence relation:
-            # I_l = ((2l-1)*z*I_{l-1}-(l-1)*I_{l-2})/(R^2*l)
-            I_l = ((2*n-1)*z*I_l1-(n-1)*I_l2)/(r**2*n)
-        return I_l
-
-
-"""
 class Multipole2d():
     '''The Multipole Expansion in 2d case'''
 
@@ -454,6 +403,55 @@ class Multipole2d():
         """
 
 
+# version 3
+@jit
+def calcR_l(l, z, r):
+    # Calculate the solid harmonic function R_l^c for 2d axisymmetric condition
+    # We use the recurrence relation defined in Flash user guide
+    # R_l^c = ((2*l-1)*z*R_{l-1}^c-r**2*R_{l-2}^c)/l**2
+    # This recurrence reltaion use the initial conditions:
+    # R_0^c = 1
+    # R_1^c = z
+    if (l == 0):
+        return 1.0
+    elif (l == 1):
+        return z
+    else:
+        R_l2 = 1.0
+        R_l1 = z
+        for n in range(2, l+1):
+            # R_l = ((2*n-1)*z*R_l1-r**2*R_l2)/n**2
+
+            # here use another recurrence relation:
+            # R_l=((2l-1)*z*R_{l-1}-(l-1)*r^2*R_{l-2})/n
+            R_l = ((2*n-1)*z*R_l1-(n-1)*r**2*R_l2)/n
+        return R_l
+
+# bug
+
+
+@jit
+def calcI_l(l, z, r):
+    # Calculate the solid harmonic function I_l^c for 2d axisymmetric condition
+    # We use the recurrence relation defined in Flash user guide
+    # I_l^c = ((2*l-1)*z*I_{l-1}^c-(l-1)**2*R_{l-2}^c)/r**2
+    # This recurrence reltaion use the initial conditions:
+    # I_0^c = 1/r
+    # I_1^c = z/r**3
+    if (l == 0):
+        return 1/r
+    elif(l == 1):
+        return z/r**3
+    else:
+        I_l2 = 1.0
+        I_l1 = z/r**3
+        for n in range(2, l+1):
+            # I_l = ((2*n-1)*z*I_l1-(n-1)**2*I_l2)/r**2
+
+            # here use another recurrence relation:
+            # I_l = ((2l-1)*z*I_{l-1}-(l-1)*I_{l-2})/(R^2*l)
+            I_l = ((2*n-1)*z*I_l1-(n-1)*I_l2)/(r**2*n)
+        return I_l
 class Multipole2d():
     '''The Multipole Expansion in 2d case'''
 
