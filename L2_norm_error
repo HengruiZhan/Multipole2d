@@ -1,2 +1,65 @@
-1 
-2
+perfect sphere with normalized density
+a = 0.5
+2dr
+resolution is 16
+lmax = 0
+L2 norm error is 0.004033483432225348
+resolution is 32
+lmax = 0
+L2 norm error is 0.0008965634177388112
+lmax = 0
+L2 norm error is 0.0002869085887194267
+
+a=0.45
+2dr
+resolution is 16
+lmax = 0
+L2 norm error is 0.007978034615106506
+resolution is 32
+lmax = 0
+L2 norm error is 0.0023776813325022557
+resolution is 64
+lmax = 0
+L2 norm error is 0.0004128710356904175
+
+a = 0.47
+2dr
+resolution is 16
+lmax = 0
+L2 norm error is 0.006732080892377805
+resolution is 32
+lmax = 0
+L2 norm error is 0.001156172756111129
+resolution is 64
+lmax = 0
+L2 norm error is 0.00038423031064562473
+resolution is 128
+lmax = 0
+L2 norm error is 8.230353722777086e-05
+
+a=0.3
+bruteforce
+resolution is 16
+lmax = 0
+L2 norm error is 0.00710856361249687
+
+resolution is 32
+lmax = 0
+L2 norm error is 0.001800715357658117
+
+resolution is 64
+lmax = 0
+L2 norm error is 0.00039151063605838974
+
+a=0.25
+# this one is the best
+bruteforce
+resolution is 32
+lmax = 0
+L2 norm error is 0.004081192288815428
+resolution is 64
+lmax = 0
+L2 norm error is 0.0011252100962163654
+resolution is 128
+lmax = 0
+L2 norm error is 0.00037981243035381464
