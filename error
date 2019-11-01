@@ -1,0 +1,54 @@
+double spheres
+lmax = 20
+L2_error_64 = 4.275267198789454e-14
+L2_error_128 = 2.932472422999169e-14
+L2_error_256 = 8.169075047353191e-15
+
+L1_error_64 = 3.830672199356298e-14
+L1_error_128 = 2.3848299382067517e-14
+L1_error_256 = 2.6597379182280733e-15
+
+with normalized mass density
+resolution is 64
+L2 norm error is 1.8412220500367573e-14
+L1 norm error is 2.8909299125812466e-15
+
+resolution is 128
+L2 norm error is 7.269689774268816e-15
+L1 norm error is 1.4237395918234362e-15
+
+resolution is 256
+L2 norm error is 8.261266345516579e-15
+L1 norm error is 1.4515499902199789e-15
+
+lmax = 30
+resolution is 32
+L2 norm error is 3.327005190073065e-14
+L1 norm error is 5.7904976838039616e-15
+
+resolution is 64
+L2 norm error is 4.2282817489505365e-14
+L1 norm error is 3.82105948844556e-14
+
+resolution is 128
+L2 norm error is 2.7520442368289797e-14
+L1 norm error is 2.3632347889075958e-14
+
+resolution is 256
+L2 norm error is 2.952863889400699e-15
+L1 norm error is 1.8500593120253555e-15
+
+with normalized mass density
+resolution is 64
+L2 norm error is 1.344186581352135e-14
+L1 norm error is 2.485985542450981e-15
+
+resolution is 128
+L2 norm error is 2.800342825993074e-15
+L1 norm error is 5.811912710782495e-16
+
+resolution is 256
+L2 norm error is 2.5426857854758743e-15
+L1 norm error is 5.135862098750141e-16
+
+perfect sphere with normalized density
