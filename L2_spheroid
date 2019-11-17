@@ -1,0 +1,13 @@
+at lmax = 20
+
+use rlim=(0, 0.5), zlim=(-0.5,0.5)
+8 by 16: L2 norm error is 0.054073690796957743
+16 by 32: L2 norm error is 0.014127399702883748
+32 by 64: L2 norm error is 0.003210033196995318
+64 by 128: L2 norm error is 0.0011777965154722279
+
+at lmax = 40
+8 by 16: L2 norm error is 0.027293921243702723
+16 by 32: L2 norm error is 0.00989541394525192
+32 by 64: L2 norm error is 0.001986307925707524
+64 by 128: L2 norm error is 0.0008078874937819642
