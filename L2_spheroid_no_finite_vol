@@ -1,0 +1,37 @@
+using finite volume L2 formula
+rlim=(0, 0.5), zlim=(-0.5,0.5)
+using 0.3*dr
+a3=0.1, e =0.9
+# evaluate at the surface
+
+lmax = 60
+resolution is 32 by 64 L2 norm error is 0.004097478992236104
+resolution is 64 by 128 L2 norm error is 0.001149331908086323
+resolution is 128 by 256 L2 norm error is 0.0001063458309831224
+
+
+using finite volume L2 formula
+rlim=(0, 0.5), zlim=(-0.5,0.5)
+a3=0.1, e =0.5
+using 0.3*dr
+# evaluate at the surface
+lmax = 20
+resolution is 16 by 32 L2 norm error is 0.08253067411250722
+resolution is 32 by 64 L2 norm error is 0.006346299616850261
+resolution is 64 by 128 L2 norm error is 0.0009553411787517773
+resolution is 128 by 256 L2 norm error is 0.0003641796339865052
+
+lmax = 60
+resolution is 256 by 512 L2 norm error is 0.00021201020665347843
+
+using finite volume L2 formula
+rlim=(0, 0.5), zlim=(-0.5,0.5)
+a3=0.2, e =0.5
+using 0.3*dr
+# evaluate at the surface
+
+lmax = 20
+resolution is 32 by 64 L2 norm error is 0.0009087867866987724
+resolution is 64 by 128 L2 norm error is 0.0003222994473288232
+resolution is 128 by 256 L2 norm error is 0.00016176022611922867
+resolution is 256 by 512 L2 norm error is 7.723209517323299e-05
